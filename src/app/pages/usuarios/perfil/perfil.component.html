@@ -1,0 +1,58 @@
+<div class="col-lg-12">
+    <nb-card>
+      <nb-card-header >
+       <h1 font-color=blue> BIENVENIDO!!!! </h1>
+      </nb-card-header>
+  
+      <nb-card-body>
+        <div class="row">
+          <div class="col-3">
+            <label>Seudonimo</label>
+          </div>
+          <div class="col-9">
+            <ng-container >
+              <tr>
+                <td>{{elUsuario.seudonimo}}</td>
+              </ng-container>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-3">
+            <label>Correo</label>
+          </div>
+          <div class="col-9">
+            <ng-container >
+              <tr>
+                <td>{{elUsuario.correo}}</td>
+              </ng-container>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-3">
+            <label>Rol</label>
+          </div>
+          <div class="col-9">
+            <ng-container >
+              <tr>
+                <td>{{elUsuario.rol["nombre"]}}</td>
+              </ng-container>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-3">
+            <label>Descripción</label>
+          </div>
+          <div class="col-9">
+            <ng-container >
+              <tr>
+                <td>{{elUsuario.rol["descripcion"]}}</td>
+              </ng-container>
+          </div>
+        </div>
+        <br>
+      </nb-card-body>
+    </nb-card>
+</div>
