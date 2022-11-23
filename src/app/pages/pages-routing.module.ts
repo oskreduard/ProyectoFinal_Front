@@ -2,13 +2,17 @@ import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 
 import { PagesComponent } from './pages.component';
-import { ECommerceComponent } from './e-commerce/e-commerce.component';
 import { NotFoundComponent } from './miscellaneous/not-found/not-found.component';
+import { LoginComponent } from './seguridad/login/login.component';
 
 const routes: Routes = [{
   path: '',
   component: PagesComponent,
   children: [
+    {
+      path: 'login',
+      component: LoginComponent,
+    },
     {
       path: 'seguridad',
       loadChildren: () => import('./seguridad/seguridad.module')
@@ -20,8 +24,9 @@ const routes: Routes = [{
       .then(m => m.PartidosModule),
     },
     {
-      path: 'dashboard',
-      component: ECommerceComponent,
+      path: 'usuarios',
+      loadChildren: () => import('./usuarios/usuarios.module')
+      .then(m => m.UsuariosModule),
     },
     {
       path: 'layout',
@@ -54,11 +59,6 @@ const routes: Routes = [{
         .then(m => m.MapsModule),
     },
     {
-      path: 'charts',
-      loadChildren: () => import('./charts/charts.module')
-        .then(m => m.ChartsModule),
-    },
-    {
       path: 'editors',
       loadChildren: () => import('./editors/editors.module')
         .then(m => m.EditorsModule),
@@ -75,7 +75,7 @@ const routes: Routes = [{
     },
     {
       path: '',
-      redirectTo: 'dashboard',
+      redirectTo: 'login',
       pathMatch: 'full',
     },
     {
