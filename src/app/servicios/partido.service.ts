@@ -23,7 +23,7 @@ export class PartidoService {
   crear(elPartido: Partido) {
     return this.http.post(`${environment.url_gateway}/partido`, elPartido);
   }
-  editar(id:string,elPartido: Partido) {
+  editar(elPartido: Partido, id:string,) {
     return this.http.put(`${environment.url_gateway}/partido/${id}`, elPartido);
   }
 }

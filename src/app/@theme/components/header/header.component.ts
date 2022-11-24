@@ -5,6 +5,9 @@ import { UserData } from '../../../@core/data/users';
 import { LayoutService } from '../../../@core/utils';
 import { map, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
+import { profile } from 'console';
+import { Router } from '@angular/router';
+import { SeguridadService } from '../../../servicios/seguridad.service';
 
 @Component({
   selector: 'ngx-header',
@@ -45,8 +48,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
               private themeService: NbThemeService,
               private userService: UserData,
               private layoutService: LayoutService,
-              private breakpointService: NbMediaBreakpointsService) {
-  }
+              private breakpointService: NbMediaBreakpointsService,
+              private router: Router,
+              private miServicioSeguridad : SeguridadService) { 
+              ;
+              }
 
   ngOnInit() {
     this.currentTheme = this.themeService.currentTheme;
@@ -69,8 +75,23 @@ export class HeaderComponent implements OnInit, OnDestroy {
         takeUntil(this.destroy$),
       )
       .subscribe(themeName => this.currentTheme = themeName);
+
+    this.menuService.onItemClick().subscribe(( event ) => {
+        this.onItemSelection(event.item.title);
+      })
   }
 
+  onItemSelection( title ) {
+    if ( title === 'Log out' ) {
+      this.miServicioSeguridad.logout();
+      this.router.navigate([""])
+      /*console.log('Log out Clicked ')*/
+    } else if ( title === 'Profile' ) {   
+      this.router.navigate(["pages/usuarios/perfil/"+this.miServicioSeguridad.getActiveId()])
+    }
+  }
+  
+  
   ngOnDestroy() {
     this.destroy$.next();
     this.destroy$.complete();

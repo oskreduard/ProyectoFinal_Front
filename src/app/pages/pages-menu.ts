@@ -3,33 +3,32 @@ import { NbMenuItem } from '@nebular/theme';
 export const MENU_ITEMS: NbMenuItem[] = [
   
   {
-    title: 'FEATURES',
+    title: 'Modulos',
     group: true,
   },
   {
-    title: 'Layout',
+    title: 'Partidos',
     icon: 'layout-outline',
     children: [
       {
-        title: 'Stepper',
-        link: '/pages/layout/stepper',
+        title: 'Crear',
+        link: '/partido/crear',
       },
       {
-        title: 'List',
-        link: '/pages/layout/list',
+        title: 'Listar Todos',
+        link: '/partido/listar',
       },
       {
-        title: 'Infinite List',
-        link: '/pages/layout/infinite-list',
+        title: 'Buscar por Id',
+        link: '/partido/finbyid',
       },
       {
-        title: 'Accordion',
-        link: '/pages/layout/accordion',
+        title: 'Actualizar',
+        link: '/partido/actualizar',
       },
       {
-        title: 'Tabs',
-        pathMatch: 'prefix',
-        link: '/pages/layout/tabs',
+        title: 'Eliminar',
+        link: '/partido/eliminar',
       },
     ],
   },
