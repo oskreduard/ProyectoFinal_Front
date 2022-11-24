@@ -13,7 +13,8 @@
       <ng-container *ngFor="let partidoeActual of partidos">
         <tr>
           <td>{{partidoeActual.nombre}}</td>
-          <td>{{partidoeActual.Lema}} </td>
+          <td>{{partidoeActual.lema}} </td>
+
           <td>
             <button type="button" class="btn btn-primary" (click)="editar(partidoeActual._id)">
               <i class="fas fa-pencil-alt"></i>
