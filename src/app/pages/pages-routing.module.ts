@@ -14,6 +14,16 @@ const routes: Routes = [{
       component: LoginComponent,
     },
     {
+      path: 'mesa',
+      loadChildren: () => import('./mesa/mesa.module')
+      .then(m => m.MesaModule),
+    },
+    {
+      path: 'candidato',
+      loadChildren: () => import('./candidato/candidato.module')
+      .then(m => m.CandidatoModule),
+    },
+    {
       path: 'seguridad',
       loadChildren: () => import('./seguridad/seguridad.module')
       .then(m => m.SeguridadModule),
