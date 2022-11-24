@@ -36,7 +36,8 @@
           <div class="col-9">
             <ng-container >
               <tr>
-                <td>{{elUsuario.rol["nombre"]}}</td>
+                <td *ngIf="elUsuario.rol" >{{elUsuario.rol["nombre"]}}</td>                
+                <td *ngIf="!elUsuario.rol" ></td>
               </ng-container>
           </div>
         </div>
@@ -48,7 +49,8 @@
           <div class="col-9">
             <ng-container >
               <tr>
-                <td>{{elUsuario.rol["descripcion"]}}</td>
+                <td *ngIf="elUsuario.rol" >{{elUsuario.rol["descripcion"]}}</td>
+                <td *ngIf="!elUsuario.rol" ></td>
               </ng-container>
           </div>
         </div>

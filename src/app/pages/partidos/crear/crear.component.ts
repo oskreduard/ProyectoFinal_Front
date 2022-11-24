@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
-import { Usuario } from '../../../modelos/usuario.model';
-import { UsuariosService } from '../../../servicios/usuario.service';
+import { Partido } from '../../../modelos/partido.model'; 
+import { PartidoService } from '../../../servicios/partido.service'; 
 
 @Component({
   selector: 'ngx-crear',
@@ -10,67 +10,67 @@ import { UsuariosService } from '../../../servicios/usuario.service';
   styleUrls: ['./crear.component.scss']
 })
 export class CrearComponent implements OnInit {
-
-  modoCreacion: boolean = true;
-  id_usuario: string = "";
-  intentoEnvio: boolean = false;
-  elUsuario: Usuario = {
-    seudonimo: "",
-    correo: "",
-    contrasena:""
-  }
-  constructor(private miServicioUsuarios: UsuariosService,
-              private rutaActiva: ActivatedRoute,
-              private router: Router) { }
-
-  ngOnInit(): void {
-    if (this.rutaActiva.snapshot.params.id_usuario) {
-      this.modoCreacion = false;
-      this.id_usuario = this.rutaActiva.snapshot.params.id_usuario;
-      this.getUsuario(this.id_usuario)
-    } else {
-      this.modoCreacion = true;
+  
+    modoCreacion: boolean = true;
+    id_partido: string = "";
+    intentoEnvio: boolean = false;
+    elPartido: Partido = {
+      nombre: "",
+      lema: ""
     }
-  }
-  getUsuario(id: string) {
-    this.miServicioUsuarios.getUsuario(id).
-      subscribe(data => {
-        this.elUsuario = data;
-      });
-  }
-  agregar(): void {
-    if (this.validarDatosCompletos()) {
-      this.intentoEnvio = true;
-      this.miServicioUsuarios.crear(this.elUsuario).
+    constructor(private miServicioPartido: PartidoService,
+                private rutaActiva: ActivatedRoute,
+                private router: Router) { }
+  
+    ngOnInit(): void {
+      if (this.rutaActiva.snapshot.params.elPartido) {
+        this.modoCreacion = false;
+        this.elPartido = this.rutaActiva.snapshot.params.id_estudiante;
+        this.getPartido(this.id_partido)
+      } else {
+        this.modoCreacion = true;
+      }
+    }
+    getPartido(id: string) {
+      this.miServicioPartido.getPartido(id).
         subscribe(data => {
-          Swal.fire(
-            'Creado',
-            'El Usuario ha sido creado correctamente',
+          this.elPartido = data;
+        });
+    }
+    agregar(): void {
+      if (this.validarDatosCompletos()) {
+        this.intentoEnvio = true;
+        this.miServicioPartido.crear(this.elPartido).
+          subscribe(data => {
+            Swal.fire(
+              'Creado',
+              'El Partido ha sido creado correctamente',
+              'success'
+            )
+            this.router.navigate(["pages/partidos/listar"]);
+          });
+      }
+    }
+    editar(): void {
+      if (this.validarDatosCompletos()) {
+        this.miServicioPartido.editar(this.elPartido, this.id_partido).
+          subscribe(data => {
+            Swal.fire(
+            'Actualizado',
+            'El Partido ha sido actualizado correctamente',
             'success'
-          )
-          this.router.navigate(["pages/usuarios/listar"]);
-        });
+            )
+          this.router.navigate(["pages/partidos/listar"]);
+          });
+      }
+    }
+    validarDatosCompletos():boolean{
+      this.intentoEnvio=true;
+      if(this.elPartido.nombre=="" || this.elPartido.lema==""){
+        return false;
+      }else{
+        return true;
+      }
     }
   }
-  editar(): void {
-    if (this.validarDatosCompletos()) {
-      this.miServicioUsuarios.editar(this.elUsuario._id, this.elUsuario).
-        subscribe(data => {
-          Swal.fire(
-          'Actualizado',
-          'El Usuario ha sido actualizado correctamente',
-          'success'
-          )
-        this.router.navigate(["pages/usuarios/listar"]);
-        });
-    }
-  }
-  validarDatosCompletos():boolean{
-    this.intentoEnvio=true;
-    if(this.elUsuario.seudonimo=="" || this.elUsuario.correo=="" || this.elUsuario.contrasena==""){
-      return false;
-    }else{
-      return true;
-    }
-  }
-}
+  
