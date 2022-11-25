@@ -27,7 +27,10 @@ export class ListarComponent implements OnInit {
     this.router.navigate(["pages/partidos/crear"]);
   }
   editar(id:string):void{
+    console.log(id);
+    
     this.router.navigate(["pages/partidos/actualizar/"+id]);
+    
   }
   eliminar(id:string):void{
     Swal.fire({

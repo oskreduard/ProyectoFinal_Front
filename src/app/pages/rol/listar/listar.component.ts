@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import Swal from 'sweetalert2';
-import { Candidato } from '../../../modelos/candidato.model';
-import { CandidatoService } from '../../../servicios/candidato.service';
+import { Rol } from '../../../modelos/rol.model';
+import { RolService } from '../../../servicios/rol.service'; 
 import { Router } from '@angular/router';
-
-
 
 @Component({
   selector: 'ngx-listar',
@@ -12,31 +10,29 @@ import { Router } from '@angular/router';
   styleUrls: ['./listar.component.scss']
 })
 export class ListarComponent implements OnInit {
-
-  candidatos : Candidato[];
-  nombresColumnas: string[] = ['Cedula','Numero Resolucion','Nombre','Apellido','Partido'];
-  constructor(private miServicioCandidato: CandidatoService, private router: Router) { }
-
+  roles : Rol[];
+  nombresColumnas: string[] = ['nombre','descripcion','Opciones'];
+  constructor(private miServicioRol: RolService, private router: Router) { }
 
   ngOnInit(): void {
     this.listar();
   }
   listar():void{
-    this.miServicioCandidato.listar().
+    this.miServicioRol.listar().
       subscribe(data => {
-        this.candidatos=data;
+        this.roles=data;
       });
   }
   agregar():void{
-    this.router.navigate(["pages/candidato/crear"]);
+    this.router.navigate(["pages/rol/crear"]);
   }
   editar(id:string):void{
-    this.router.navigate(["pages/candidato/actualizar/"+id]);
+    this.router.navigate(["pages/rol/actualizar/"+id]);
   }
   eliminar(id:string):void{
     Swal.fire({
-      title: 'Eliminar candidato',
-      text: "Está seguro que quiere eliminar el candidato?",
+      title: 'Eliminar Rol',
+      text: "Está seguro que quiere eliminar el Rol?",
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
@@ -44,11 +40,11 @@ export class ListarComponent implements OnInit {
       confirmButtonText: 'Si, eliminar'
     }).then((result) => {
       if (result.isConfirmed) {
-        this.miServicioCandidato.eliminar(id).
+        this.miServicioRol.eliminar(id).
           subscribe(data => {
             Swal.fire(
               'Eliminado!',
-              'El candidato ha sido eliminado correctamente',
+              'El Rol ha sido eliminado correctamente',
               'success'
             )
             this.ngOnInit();
@@ -56,5 +52,5 @@ export class ListarComponent implements OnInit {
       }
     })
   }
-
 }
+

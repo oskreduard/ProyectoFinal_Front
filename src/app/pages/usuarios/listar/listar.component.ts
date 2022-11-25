@@ -30,6 +30,9 @@ export class ListarComponent implements OnInit {
   editar(id:string):void{
     this.router.navigate(["pages/usuarios/actualizar/"+id]);
   }
+  asignarRol(id:string):void{
+    this.router.navigate(["pages/usuarios/asignar/"+id]);
+  }
   eliminar(id:string):void{
     Swal.fire({
       title: 'Eliminar Usuario',
