@@ -25,6 +25,7 @@
         </div>
         <div class="col-9">
             <input class="form-control" type="text"
+                 [disabled]="!modoCreacion"
                   [(ngModel)]="elUsuario.correo">
             <p *ngIf="intentoEnvio && elUsuario.correo==''">Requerido</p>
         </div>

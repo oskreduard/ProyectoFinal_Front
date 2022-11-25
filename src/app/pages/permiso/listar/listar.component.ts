@@ -31,8 +31,8 @@ export class ListarComponent implements OnInit {
   }
   eliminar(id:string):void{
     Swal.fire({
-      title: 'Eliminar Permiso',
-      text: "Está seguro que quiere eliminar el permiso?",
+      title: 'Eliminar Usuario',
+      text: "Está seguro que quiere eliminar el Permiso?",
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
@@ -44,7 +44,7 @@ export class ListarComponent implements OnInit {
           subscribe(data => {
             Swal.fire(
               'Eliminado!',
-              'El permiso ha sido eliminado correctamente',
+              'El Permiso ha sido eliminado correctamente',
               'success'
             )
             this.ngOnInit();

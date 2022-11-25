@@ -22,7 +22,13 @@ export class CandidatoService {
   crear(Elcandidato: Candidato) {
     return this.http.post(`${environment.url_gateway}/candidato`, Elcandidato);
   }
+  getCandidatobyCedula(cedula: string): Observable<Candidato> {
+    return this.http.get<Candidato>(`${environment.url_gateway}/candidato/cedula/${cedula}`);
+  }
   editar(Elcandidato: Candidato, id:string,) {
     return this.http.put(`${environment.url_gateway}/candidato/${id}`, Elcandidato);
+  }
+  asignarPartido(id:string,idPartido:string) {
+    return this.http.put(`${environment.url_gateway}/candidato/${id}/partido/${idPartido}`, null);
   }
 }

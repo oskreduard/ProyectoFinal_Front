@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
-import { Usuario } from '../../../modelos/usuario.model';
-import { UsuariosService } from '../../../servicios/usuario.service';
+import { Candidato } from '../../../modelos/candidato.model'; 
+import { CandidatoService } from '../../../servicios/candidato.service';
 
 @Component({
   selector: 'ngx-buscar',
@@ -15,14 +15,14 @@ export class BuscarComponent implements OnInit {
   modoEliminar: boolean = false;
   modoEditar: boolean = false;
   
-  email_usuario: string = "";
+  cedula_candidato: string = "";
   intentoEnvio: boolean = false;
-  elUsuario: Usuario = {
-    seudonimo: "",
-    correo: "",
-    contrasena:""
+  elCandidato: Candidato = {
+    apellido: "",
+    numero_resolucion: "",
+    nombre:""
   }
-  constructor(private miServicioUsuarios: UsuariosService,
+  constructor(private miServicioCandidato: CandidatoService,
               private rutaActiva: ActivatedRoute,
               private router: Router) { }
 
@@ -44,18 +44,19 @@ export class BuscarComponent implements OnInit {
       this.modoEditar = true;
     }
   }
-  getUsuariobyEmail() {
+  getCandidatobyCedula() {
     if (this.validarDatosCompletos()) {
       this.intentoEnvio = true;
-      this.miServicioUsuarios.getUsuariobyEmail(this.email_usuario).
+      this.miServicioCandidato.getCandidatobyCedula(this.cedula_candidato).
         subscribe(data => {
-          this.elUsuario = data;
-          this.router.navigate(["pages/usuarios/perfil/"+this.elUsuario._id]);
+          this.elCandidato = data;
+          this.router.navigate(["pages/candidato/perfil/"+this.elCandidato._id]);
+          console.log(this.router.navigate(["pages/candidato/perfil/"+this.elCandidato._id]))
         },
         error=>{
           Swal.fire({
             title: 'Error ',
-            text: "No se encuentran el correo en la Base de Datos",
+            text: "No se encuentran la cedula en la Base de Datos",
             icon: 'error',
             footer: error["error"]["msg"],
             timer:5000
@@ -63,13 +64,13 @@ export class BuscarComponent implements OnInit {
         });
     }
   }
-  asignarRol():void{
+  asignarPartido():void{
     if (this.validarDatosCompletos()) {
       this.intentoEnvio = true;
-      this.miServicioUsuarios.getUsuariobyEmail(this.email_usuario).
+      this.miServicioCandidato.getCandidatobyCedula(this.cedula_candidato).
         subscribe(data => {
-          this.elUsuario = data;
-          this.router.navigate(["pages/usuarios/asignar/"+this.elUsuario._id]);
+          this.elCandidato = data;
+          this.router.navigate(["pages/candidato/asignar/"+this.elCandidato._id]);
         },
         error=>{
           Swal.fire({
@@ -85,10 +86,10 @@ export class BuscarComponent implements OnInit {
   editar():void{
     if (this.validarDatosCompletos()) {
       this.intentoEnvio = true;
-      this.miServicioUsuarios.getUsuariobyEmail(this.email_usuario).
+      this.miServicioCandidato.getCandidatobyCedula(this.cedula_candidato).
         subscribe(data => {
-          this.elUsuario = data;
-          this.router.navigate(["pages/usuarios/actualizar/"+this.elUsuario._id]);
+          this.elCandidato = data;
+          this.router.navigate(["pages/candidato/actualizar/"+this.elCandidato._id]);
         },
         error=>{
           Swal.fire({
@@ -105,12 +106,12 @@ export class BuscarComponent implements OnInit {
   eliminar():void{
     if (this.validarDatosCompletos()) {
       this.intentoEnvio = true;
-      this.miServicioUsuarios.getUsuariobyEmail(this.email_usuario).
+      this.miServicioCandidato.getCandidatobyCedula(this.cedula_candidato).
         subscribe(data => {
-          this.elUsuario = data;
+          this.elCandidato = data;
           Swal.fire({
-            title: 'Eliminar Usuario',
-            text: "Está seguro que quiere eliminar el usuario?",
+            title: 'Eliminar Candidato',
+            text: "Está seguro que quiere eliminar el candidato?",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
@@ -118,14 +119,14 @@ export class BuscarComponent implements OnInit {
             confirmButtonText: 'Si, eliminar'
           }).then((result) => {
             if (result.isConfirmed) {
-              this.miServicioUsuarios.eliminar(this.elUsuario._id).
+              this.miServicioCandidato.eliminar(this.elCandidato._id).
                 subscribe(data => {
                   Swal.fire(
                     'Eliminado!',
-                    'El usuario ha sido eliminado correctamente',
+                    'El usuario ha sido candidato correctamente',
                     'success'
                   )
-                  this.router.navigate(["pages/usuarios/listar"]);
+                  this.router.navigate(["pages/candidato/listar"]);
                 });
             }
           })
@@ -144,12 +145,10 @@ export class BuscarComponent implements OnInit {
   }
    validarDatosCompletos():boolean{
     this.intentoEnvio=true;
-    if(this.email_usuario==""){
+    if(this.cedula_candidato==""){
       return false;
     }else{
       return true;
     }
-    console.log(this.email_usuario);
-    console.log(this.intentoEnvio);
   }
 }

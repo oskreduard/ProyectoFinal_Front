@@ -39,18 +39,42 @@ export class CrearComponent implements OnInit {
         this.laMesa = data;
       });
   }
-  agregar(): void {
+  agregar(){
     if (this.validarDatosCompletos()) {
-      this.intentoEnvio = true;
-      this.miServicioMesa.crear(this.laMesa).
+      this.miServicioMesa.getMesaByNumero(this.laMesa.numero).
         subscribe(data => {
-          Swal.fire(
-            'Creado',
-            'La Mesa ha sido creada correctamente',
-            'success'
-          )
-          this.router.navigate(["pages/mesa/listar"]);
+          this.intentoEnvio = false;
+          this.laMesa = data;
+          console.log(this.laMesa.numero)
+          if (this.laMesa.numero!=""){
+             this.laMesa.numero = "used";
+             Swal.fire({
+              title: 'Error',
+              text: "La Mesa ya existe en BD",
+              icon: 'warning',
+              confirmButtonColor: '#3085d6',
+              cancelButtonColor: '#d33',
+              confirmButtonText: 'Ok'
+            }).then((result) => {
+              if (result.isConfirmed) {
+                window.location.reload()
+              }}) 
+            }   
+        },error=>{
+          if (this.validarDatosCompletos()&&this.laMesa.numero!="used") {
+            this.intentoEnvio = true;
+            this.miServicioMesa.crear(this.laMesa).
+              subscribe(data => {
+                Swal.fire(
+                  'Creado',
+                  'El Candidato ha sido creado correctamente',
+                  'success'
+                )
+                this.router.navigate(["pages/mesa/listar"]);
+              });
+          }
         });
+      
     }
   }
   editar(): void {

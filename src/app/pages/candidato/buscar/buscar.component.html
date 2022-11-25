@@ -1,35 +1,35 @@
 <div class="col-lg-12">
     <nb-card>
       <nb-card-header *ngIf="modoBuscar">
-        BUSCAR USUARIO
+        BUSCAR CANDIDATO
       </nb-card-header>
       <nb-card-header *ngIf="modoAsignar">
-        INGRESE EL USUARIO A ASIGNAR
+        INGRESE EL CANDIDATO A ASIGNAR
       </nb-card-header>
       <nb-card-header *ngIf="modoEliminar">
-        INGRESE EL USUARIO A ELIMINAR
+        INGRESE EL CANDIDATO A ELIMINAR
       </nb-card-header>
       <nb-card-header *ngIf="modoEditar">
-        INGRESE EL USUARIO A EDITAR
+        INGRESE EL CANDIDATO A EDITAR
       </nb-card-header>
   
       <nb-card-body>
         <div class="row">
           <div class="col-3">
-            <label>Correo</label>
+            <label>Cedula</label>
           </div>
           <div class="col-9">
               <input class="form-control" type="text"
-                    [(ngModel)]="email_usuario">
-              <p *ngIf="intentoEnvio && email_usuario==''">Requerido</p>
+                    [(ngModel)]="cedula_candidato">
+              <p *ngIf="intentoEnvio && cedula_candidato==''">Requerido</p>
           </div>
-        </div>
-        <br>
+            </div>
+            <br>
 
-        <div class="row">
-          <button *ngIf="modoBuscar" class="btn btn-primary btn-block" (click)="getUsuariobyEmail()"> Buscar
+            <div class="row">
+          <button *ngIf="modoBuscar" class="btn btn-primary btn-block" (click)="getCandidatobyCedula()"> Buscar
           </button>
-          <button *ngIf="modoAsignar" class="btn btn-primary btn-block" (click)="asignarRol()"> Ir a Asignar
+          <button *ngIf="modoAsignar" class="btn btn-primary btn-block" (click)="asignarPartido()"> Ir a Asignar
           </button>
           <button *ngIf="modoEliminar" class="btn btn-primary btn-block" (click)="eliminar()"> Eliminar
           </button>

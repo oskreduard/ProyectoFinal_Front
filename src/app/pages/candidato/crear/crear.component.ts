@@ -1,3 +1,4 @@
+import { conditionallyCreateMapObjectLiteral } from '@angular/compiler/src/render3/view/util';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
@@ -41,18 +42,42 @@ export class CrearComponent implements OnInit {
         this.elCandidato = data;
       });
   }
-  agregar(): void {
+  agregar(){
     if (this.validarDatosCompletos()) {
-      this.intentoEnvio = true;
-      this.miServicioCandidato.crear(this.elCandidato).
+      this.miServicioCandidato.getCandidatobyCedula(this.elCandidato.cedula).
         subscribe(data => {
-          Swal.fire(
-            'Creado',
-            'el candidato ha sido creada correctamente',
-            'success'
-          )
-          this.router.navigate(["pages/candidato/listar"]);
+          this.intentoEnvio = false;
+          this.elCandidato = data;
+          console.log(this.elCandidato.cedula)
+          if (this.elCandidato.cedula!=""){
+             this.elCandidato.cedula = "used";
+             Swal.fire({
+              title: 'Error',
+              text: "La Cedula ya existe en BD",
+              icon: 'warning',
+              confirmButtonColor: '#3085d6',
+              cancelButtonColor: '#d33',
+              confirmButtonText: 'Ok'
+            }).then((result) => {
+              if (result.isConfirmed) {
+                window.location.reload()
+              }}) 
+            }   
+        },error=>{
+          if (this.validarDatosCompletos()&&this.elCandidato.cedula!="used") {
+            this.intentoEnvio = true;
+            this.miServicioCandidato.crear(this.elCandidato).
+              subscribe(data => {
+                Swal.fire(
+                  'Creado',
+                  'El Candidato ha sido creado correctamente',
+                  'success'
+                )
+                this.router.navigate(["pages/candidato/listar"]);
+              });
+          }
         });
+      
     }
   }
   editar(): void {
@@ -69,6 +94,7 @@ export class CrearComponent implements OnInit {
     }
     
   }
+  
   validarDatosCompletos():boolean{
     this.intentoEnvio=true;
     if(this.elCandidato.cedula=="" || this.elCandidato.numero_resolucion==""|| this.elCandidato.nombre=="" || this.elCandidato.apellido==""){ // datos

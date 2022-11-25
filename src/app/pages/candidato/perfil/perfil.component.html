@@ -1,0 +1,71 @@
+<div class="col-lg-12">
+    <nb-card>
+      <nb-card-header >
+       <h1 font-color=blue> Candidato </h1>
+      </nb-card-header>
+  
+      <nb-card-body>
+        <div class="row">
+          <div class="col-3">
+            <label>Cedula</label>
+          </div>
+          <div class="col-9">
+            <ng-container >
+              <tr>
+                <td>{{elCandidato.cedula}}</td>
+              </ng-container>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-3">
+            <label>Nombre</label>
+          </div>
+          <div class="col-9">
+            <ng-container >
+              <tr>
+                <td>{{elCandidato.nombre}}</td>
+              </ng-container>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-3">
+            <label>Apellido</label>
+          </div>
+          <div class="col-9">
+            <ng-container >
+              <tr>
+                <td>{{elCandidato.apellido}}</td>
+              </ng-container>
+          </div>
+        </div>
+        <br>        
+        <div class="row">
+          <div class="col-3">
+            <label>Numero de Resolucion</label>
+          </div>
+          <div class="col-9">
+            <ng-container >
+              <tr>
+                <td>{{elCandidato.numero_resolucion}}</td>
+              </ng-container>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-3">
+            <label>Rol</label>
+          </div>
+          <div class="col-9">
+            <ng-container >
+              <tr>
+                <td *ngIf="elCandidato.partido" >{{elCandidato.partido["nombre"]}}</td>                
+                <td *ngIf="!elCandidato.partido" ></td>
+              </ng-container>
+          </div>
+        </div>
+        
+      </nb-card-body>
+    </nb-card>
+</div>
