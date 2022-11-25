@@ -59,27 +59,27 @@ export const MENU_ITEMS: NbMenuItem[] = [
         link: '/pages/mesa/listar',
       }
     ],
-  }
-  /*{
-    title: 'Forms',
-    icon: 'edit-2-outline',
+  },
+  {
+    title: 'Seguidad',
+    group: true,
+  },
+  {
+    title: 'Usuarios',
+    icon: 'lock-outline',
     children: [
       {
-        title: 'Form Inputs',
-        link: '/pages/forms/inputs',
+        title: 'Crear',
+        link: '/pages/usuarios/crear',
       },
       {
-        title: 'Form Layouts',
-        link: '/pages/forms/layouts',
+        title: 'Mostar Todos',
+        link: '/pages/usuarios/listar',
       },
       {
-        title: 'Buttons',
-        link: '/pages/forms/buttons',
-      },
-      {
-        title: 'Datepicker',
-        link: '/pages/forms/datepicker',
-      },
-    ],
-  }*/ 
+        title: 'Asignar',
+        link: '/pages/usuarios/listar',
+      }
+    ]
+  }
 ];

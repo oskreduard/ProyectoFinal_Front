@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
-import { Usuario } from '../../../modelos/usuario.model';
-import { UsuariosService } from '../../../servicios/usuario.service';
+import { Rol } from '../../../modelos/rol.model';
+import { RolService } from '../../../servicios/rol.service'; 
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'ngx-listar',
@@ -10,33 +10,29 @@ import { UsuariosService } from '../../../servicios/usuario.service';
   styleUrls: ['./listar.component.scss']
 })
 export class ListarComponent implements OnInit {
-  Usuarios : Usuario[];
-  nombresColumnas: string[] = ['Seudonimo','Correo','Rol','Opciones'];
-  constructor(private miServicioUsuarios: UsuariosService, private router: Router) { }
+  roles : Rol[];
+  nombresColumnas: string[] = ['nombre','descripcion','Opciones'];
+  constructor(private miServicioRol: RolService, private router: Router) { }
 
   ngOnInit(): void {
     this.listar();
-    
   }
   listar():void{
-    this.miServicioUsuarios.listar().
+    this.miServicioRol.listar().
       subscribe(data => {
-        this.Usuarios=data;
+        this.roles=data;
       });
   }
   agregar():void{
-    this.router.navigate(["pages/usuarios/crear"]);
+    this.router.navigate(["pages/rol/crear"]);
   }
   editar(id:string):void{
-    this.router.navigate(["pages/usuarios/actualizar/"+id]);
-  }
-  asignarRol(id:string):void{
-    this.router.navigate(["pages/usuarios/asignar/"+id]);
+    this.router.navigate(["pages/rol/actualizar/"+id]);
   }
   eliminar(id:string):void{
     Swal.fire({
-      title: 'Eliminar Usuario',
-      text: "Está seguro que quiere eliminar el usuario?",
+      title: 'Eliminar Rol',
+      text: "Está seguro que quiere eliminar el Rol?",
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
@@ -44,11 +40,11 @@ export class ListarComponent implements OnInit {
       confirmButtonText: 'Si, eliminar'
     }).then((result) => {
       if (result.isConfirmed) {
-        this.miServicioUsuarios.eliminar(id).
+        this.miServicioRol.eliminar(id).
           subscribe(data => {
             Swal.fire(
               'Eliminado!',
-              'El usuario ha sido eliminado correctamente',
+              'El Rol ha sido eliminado correctamente',
               'success'
             )
             this.ngOnInit();
@@ -57,3 +53,4 @@ export class ListarComponent implements OnInit {
     })
   }
 }
+
