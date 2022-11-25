@@ -68,7 +68,7 @@ export class CrearComponent implements OnInit {
   }
   validarDatosCompletos():boolean{
     this.intentoEnvio=true;
-    if(this.elResultado.numero_votos=="" ){ // datos
+    if(this.elResultado.numero_votos=="" ){ 
       return false;
     }else{
       return true;

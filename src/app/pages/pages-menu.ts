@@ -61,6 +61,20 @@ export const MENU_ITEMS: NbMenuItem[] = [
     ],
   },
   {
+    title: 'Resultado',
+    icon: 'edit-2-outline',
+    children: [
+      {
+        title: 'Crear resultado',
+        link: '/pages/resultado/crear',
+      },
+      {
+        title: 'Listar todas los resultado',
+        link: '/pages/resultado/listar',
+      }
+    ],
+  },
+  {
     title: 'Seguidad',
     group: true,
   },
