@@ -25,14 +25,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
       value: 'default',
       name: 'Margin',
     },
-    //{
-    //  value: 'dark',
-    //  name: 'Dark',
-    //},
-    //{
-   //  value: 'cosmic',
- //    name: 'Cosmic',
-  //  },
    {
       value: 'corporate',
      name: 'no margin',

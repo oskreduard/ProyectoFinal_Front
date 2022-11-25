@@ -15,7 +15,9 @@ import { FormsModule } from '@angular/forms';
     ],
   imports: [
     CommonModule,
-    CandidatoRoutingModule
+    CandidatoRoutingModule,
+    NbCardModule,   
+    FormsModule
   ]
 })
 export class CandidatoModule { }
