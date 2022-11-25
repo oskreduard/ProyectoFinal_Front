@@ -18,6 +18,7 @@ export class PartidoService {
   return this.http.delete<Partido>(`${environment.url_gateway}/partido/${id}`,);
   }
   getPartido(id: string): Observable<Partido> {
+    console.log(id)
     return this.http.get<Partido>(`${environment.url_gateway}/partido/${id}`);
   }
   crear(elPartido: Partido) {
