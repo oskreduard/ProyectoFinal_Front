@@ -12,13 +12,16 @@
           <div class="col-9">
               <input class="form-control" type="text"
                     [(ngModel)]="email_usuario">
-              <p *ngIf="intentoEnvio && correo==''">Requerido</p>
+              <p *ngIf="intentoEnvio && email_usuario==''">Requerido</p>
           </div>
         </div>
-        
+        <br>
+
         <div class="row">
-          <button class="btn btn-primary btn-block" (click)="buscar()"> Crear
+          <button *ngIf="modoBuscar" class="btn btn-primary btn-block" (click)="getUsuariobyEmail()"> Buscar
           </button>
+          <button *ngIf="modoAsignar" class="btn btn-primary btn-block" (click)="asignarRol()"> Busca
+            </button>
         </div>
       </nb-card-body>
     </nb-card>

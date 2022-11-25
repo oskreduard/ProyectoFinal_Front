@@ -91,8 +91,12 @@ export const MENU_ITEMS: NbMenuItem[] = [
         link: '/pages/usuarios/listar',
       },
       {
+        title: 'Buscar',
+        link: '/pages/usuarios/buscar',
+      },
+      {
         title: 'Asignar',
-        link: '/pages/usuarios/listar',
+        link: '/pages/usuarios/buscar/modoAsignar=true',
       }
     ]
   }

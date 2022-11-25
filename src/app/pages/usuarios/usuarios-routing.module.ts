@@ -26,6 +26,14 @@ const routes: Routes = [
   {
     path: 'buscar',
     component: BuscarComponent
+  },
+  {
+    path: 'buscar/:modoAsignar',
+    component: BuscarComponent
+  },
+  {
+    path: 'asignar/:id_usuario',
+    component: AsignarComponent
   }
 ];
 

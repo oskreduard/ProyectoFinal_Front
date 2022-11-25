@@ -10,7 +10,8 @@ import { UsuariosService } from '../../../servicios/usuario.service';
   styleUrls: ['./buscar.component.scss']
 })
 export class BuscarComponent implements OnInit {
-
+  modoBuscar: boolean = true;
+  modoAsignar: boolean = false;
   email_usuario: string = "";
   intentoEnvio: boolean = false;
   elUsuario: Usuario = {
@@ -23,21 +24,57 @@ export class BuscarComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit(): void {
-    this.email_usuario = this.rutaActiva.snapshot.params.id_usuario;
+    if (this.rutaActiva.snapshot.params.modoAsignar) {
+      this.modoBuscar = false;
+      this.modoAsignar = true;
+    }
   }
-  getUsuariobyEmail(email: string) {
-    this.miServicioUsuarios.getUsuariobyEmail(email).
-      subscribe(data => {
-        this.elUsuario = data;
-        this.router.navigate(["pages/usuarios/perfil/"+this.elUsuario._id]);
-      });
+  getUsuariobyEmail() {
+    if (this.validarDatosCompletos()) {
+      this.intentoEnvio = true;
+      this.miServicioUsuarios.getUsuariobyEmail(this.email_usuario).
+        subscribe(data => {
+          this.elUsuario = data;
+          this.router.navigate(["pages/usuarios/perfil/"+this.elUsuario._id]);
+        },
+        error=>{
+          Swal.fire({
+            title: 'Error ',
+            text: "No se encuentran el correo en la Base de Datos",
+            icon: 'error',
+            footer: error["error"]["msg"],
+            timer:5000
+          });
+        });
+    }
+  }
+  asignarRol(id:string):void{
+    if (this.validarDatosCompletos()) {
+      this.intentoEnvio = true;
+      this.miServicioUsuarios.getUsuariobyEmail(this.email_usuario).
+        subscribe(data => {
+          this.elUsuario = data;
+          this.router.navigate(["pages/usuarios/asignar/"+this.elUsuario._id]);
+        },
+        error=>{
+          Swal.fire({
+            title: 'Error ',
+            text: "No se encuentran el correo en la Base de Datos",
+            icon: 'error',
+            footer: error["error"]["msg"],
+            timer:5000
+          });
+        });
+    }
   }
    validarDatosCompletos():boolean{
     this.intentoEnvio=true;
-    if(this.elUsuario.correo==""){
+    if(this.email_usuario==""){
       return false;
     }else{
       return true;
     }
+    console.log(this.email_usuario);
+    console.log(this.intentoEnvio);
   }
 }

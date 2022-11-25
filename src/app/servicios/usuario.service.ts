@@ -19,7 +19,7 @@ export class UsuariosService {
     return this.http.get<Usuario>(`${environment.url_gateway}/usuario/${id}`);
   }
   getUsuariobyEmail(email: string): Observable<Usuario> {
-    return this.http.get<Usuario>(`${environment.url_gateway}/usuario/${email}`);
+    return this.http.get<Usuario>(`${environment.url_gateway}/usuario/email/1${email}`);
   }
   crear(elEstudiante: Usuario) {
     return this.http.post(`${environment.url_gateway}/usuario`, elEstudiante);

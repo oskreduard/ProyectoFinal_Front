@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-
 import Swal from 'sweetalert2';
 import { Candidato } from '../../../modelos/candidato.model';
 import { CandidatoService } from '../../../servicios/candidato.service';
