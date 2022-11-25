@@ -89,6 +89,11 @@ const routes: Routes = [{
         .then(m => m.MiscellaneousModule),
     },
     {
+      path: 'resultado',
+      loadChildren: () => import('./resultado/resultado.module')
+        .then(m => m.ResultadoModule),
+    },
+    {
       path: '',
       redirectTo: 'login',
       pathMatch: 'full',

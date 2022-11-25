@@ -73,6 +73,22 @@ export const MENU_ITEMS: NbMenuItem[] = [
         link: '/pages/candidato/listar',
       }
     ],
+    
+  },
+  {
+    title: 'resultado',
+    icon: 'edit-2-outline',
+    children: [
+      {
+        title: 'Crear resultado',
+        link: '/pages/resultado/crear',
+      },
+      {
+        title: 'Listar todos los resultado',
+        link: '/pages/resultado/listar',
+      }
+    ],
+    
   }
   /*{
     title: 'Forms',
