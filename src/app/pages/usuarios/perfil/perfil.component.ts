@@ -17,10 +17,7 @@ export class PerfilComponent implements OnInit {
       correo: "",
       contrasena:""
     }
-    private users = {
-      nick: { name: 'Nick ', picture: 'assets/images/nick.png' }
-       };
-
+    
     nombresColumnas: string[] = ['Seudonimo','Correo','Rol','Descripcion'];
     constructor(private miServicioUsuarios: UsuariosService, 
                  private rutaActiva: ActivatedRoute,
