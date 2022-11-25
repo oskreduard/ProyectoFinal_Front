@@ -20,6 +20,9 @@ export class MesaService {
   getMesa(id: string): Observable<Mesa> {
     return this.http.get<Mesa>(`${environment.url_gateway}/mesa/${id}`);
   }
+  getMesaByNumero(numero: string): Observable<Mesa> {
+    return this.http.get<Mesa>(`${environment.url_gateway}/mesa/numero/${numero}`);
+  }
   crear(laMesa: Mesa) {
     return this.http.post(`${environment.url_gateway}/mesa`, laMesa);
   }

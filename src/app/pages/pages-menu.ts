@@ -7,42 +7,53 @@ export const MENU_ITEMS: NbMenuItem[] = [
     group: true,
   },
   {
-    title: 'Partidos',
-    icon: 'layout-outline',
-    children: [
-      {
-        title: 'Crear',
-        link: '/pages/partidos/crear',
-      },
-      {
-        title: 'Listar Todos',
-        link: '/pages/partidos/listar',
-      },
-      {
-        title: 'Buscar por Id',
-        link: '/pages/partido/finbyid',
-      },
-      {
-        title: 'Actualizar',
-        link: '/pages/partido/actualizar',
-      },
-      {
-        title: 'Eliminar',
-        link: '/pages/partido/eliminar',
-      },
-    ],
-  },
-  {
-    title: 'Permisos',
+    title: 'Candidato',
     icon: 'edit-2-outline',
     children: [
       {
-        title: 'Crear Permiso',
-        link: '/pages/permiso/crear',
+        title: 'Mostar Todos',
+        link: '/pages/candidato/listar',
       },
       {
-        title: 'Listar todas los permisos',
-        link: '/pages/permiso/listar',
+        title: 'Crear',
+        link: '/pages/candidato/crear',
+      },
+      {
+        title: 'Buscar',
+        children: [
+          {
+            title: 'Perfil',
+            link: '/pages/candidato/buscar',
+          },
+          {
+            title: 'Asignar',
+            link: '/pages/candidato/buscar/modoAsignar',
+          },
+          {
+            title: 'Editar',
+            link: '/pages/candidato/buscar/modoEditar',
+          },
+          {
+            title: 'Eliminar',
+            link: '/pages/candidato/buscar/modoEliminar',
+          }
+        ]
+      }
+    
+          
+        ]
+      },
+  {
+    title: 'Partidos',
+    icon: 'edit-2-outline',
+    children: [
+      {
+        title: 'Mostar Todos',
+        link: '/pages/partidos/listar',
+      },
+      {
+        title: 'Crear',
+        link: '/pages/partidos/crear',
       }
     ],
   },
@@ -51,29 +62,16 @@ export const MENU_ITEMS: NbMenuItem[] = [
     icon: 'edit-2-outline',
     children: [
       {
-        title: 'Crear mesa',
-        link: '/pages/mesa/crear',
-      },
-      {
-        title: 'Listar todas las mesas',
+        title: 'Mostar Todos',
         link: '/pages/mesa/listar',
-      }
-    ],
-  },
-  {
-    title: 'Candidato',
-    icon: 'edit-2-outline',
-    children: [
-      {
-        title: 'Crear Candidato',
-        link: '/pages/candidato/crear',
       },
       {
-        title: 'Listar todas los candidatos',
-        link: '/pages/candidato/listar',
+        title: 'Crear',
+        link: '/pages/mesa/crear',
       }
     ],
   },
+  
   {
     title: 'Seguidad',
     group: true,
@@ -83,21 +81,62 @@ export const MENU_ITEMS: NbMenuItem[] = [
     icon: 'lock-outline',
     children: [
       {
-        title: 'Crear',
-        link: '/pages/usuarios/crear',
-      },
-      {
         title: 'Mostar Todos',
         link: '/pages/usuarios/listar',
       },
       {
-        title: 'Buscar',
-        link: '/pages/usuarios/buscar',
+        title: 'Crear',
+        link: '/pages/usuarios/crear',
       },
       {
-        title: 'Asignar',
-        link: '/pages/usuarios/buscar/modoAsignar=true',
+        title: 'Buscar :',
+        children: [
+          {
+            title: 'Perfil',
+            link: '/pages/usuarios/buscar',
+          },
+          {
+            title: 'Asignar',
+            link: '/pages/usuarios/buscar/modoAsignar',
+          },
+          {
+            title: 'Editar',
+            link: '/pages/usuarios/buscar/modoEditar',
+          },
+          {
+            title: 'Eliminar',
+            link: '/pages/usuarios/buscar/modoEliminar',
+          }
+        ]
       }
     ]
-  }
+  },
+  {
+    title: 'Permisos',
+    icon: 'lock-outline',
+    children: [
+      {
+        title: 'Mostar Todos',
+        link: '/pages/permiso/listar',
+      },
+      {
+        title: 'Crear',
+        link: '/pages/permiso/crear',
+      }
+    ],
+  },
+  {
+    title: 'Roles',
+    icon: 'lock-outline',
+    children: [
+      {
+        title: 'Mostar Todos',
+        link: '/pages/rol/listar',
+      },
+      {
+        title: 'Crear',
+        link: '/pages/rol/crear',
+      }
+    ],
+  },
 ];

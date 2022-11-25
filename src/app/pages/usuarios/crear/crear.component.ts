@@ -36,22 +36,47 @@ export class CrearComponent implements OnInit {
     this.miServicioUsuarios.getUsuario(id).
       subscribe(data => {
         this.elUsuario = data;
+        console.log("cargando info")
       });
   }
-  agregar(): void {
+  agregar(){
     if (this.validarDatosCompletos()) {
-      this.intentoEnvio = true;
-      this.miServicioUsuarios.crear(this.elUsuario).
+      this.miServicioUsuarios.getUsuariobyEmail(this.elUsuario.correo).
         subscribe(data => {
-          Swal.fire(
-            'Creado',
-            'El Usuario ha sido creado correctamente',
-            'success'
-          )
-          this.router.navigate(["pages/usuarios/listar"]);
+          this.intentoEnvio = false;
+          this.elUsuario.correo = "used";
+          console.log(this.elUsuario.correo);
+          Swal.fire({
+            title: 'Error',
+            text: "El correo ya existe en BD",
+            icon: 'warning',
+            footer: 'Por favor Inicie sesion',
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ok'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              window.location.reload()
+            }})     
+          
+        },error=>{
+          if (this.validarDatosCompletos()&&this.elUsuario.correo!="used") {
+            this.intentoEnvio = true;
+            this.miServicioUsuarios.crear(this.elUsuario).
+              subscribe(data => {
+                Swal.fire(
+                  'Creado',
+                  'El Usuario ha sido creado correctamente',
+                  'success'
+                )
+                this.router.navigate(["pages/usuarios/listar"]);
+              });
+          }
         });
+      
     }
   }
+  
   editar(): void {
     if (this.validarDatosCompletos()) {
       this.miServicioUsuarios.editar(this.elUsuario._id, this.elUsuario).
@@ -73,4 +98,5 @@ export class CrearComponent implements OnInit {
       return true;
     }
   }
+  
 }

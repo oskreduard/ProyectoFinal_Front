@@ -24,16 +24,32 @@ const routes: Routes = [
     component: CrearComponent
   },
   {
+    path: 'asignar/:id_usuario',
+    component: AsignarComponent
+  },
+  {
     path: 'buscar',
     component: BuscarComponent
   },
   {
-    path: 'buscar/:modoAsignar',
+    path: 'buscar/modoAsignar',
     component: BuscarComponent
   },
   {
-    path: 'asignar/:id_usuario',
+    path: 'asignar/id_usuario',
     component: AsignarComponent
+  },
+  {
+    path: 'buscar/modoEditar',
+    component: BuscarComponent
+  },
+  {
+    path: 'buscar/modoEliminar',
+    component: BuscarComponent
+  },
+  {
+    path: 'buscar/modoEditar',
+    component: BuscarComponent
   }
 ];
 
