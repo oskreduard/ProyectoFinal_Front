@@ -33,6 +33,20 @@ export const MENU_ITEMS: NbMenuItem[] = [
     ],
   },
   {
+    title: 'Permisos',
+    icon: 'edit-2-outline',
+    children: [
+      {
+        title: 'Crear Permiso',
+        link: '/pages/permiso/crear',
+      },
+      {
+        title: 'Listar todas los permisos',
+        link: '/pages/permiso/listar',
+      }
+    ],
+  },
+  {
     title: 'Mesas',
     icon: 'edit-2-outline',
     children: [
@@ -52,11 +66,11 @@ export const MENU_ITEMS: NbMenuItem[] = [
     children: [
       {
         title: 'Crear Candidato',
-        link: '/pages/mesa/crear',
+        link: '/pages/candidato/crear',
       },
       {
         title: 'Listar todas los candidatos',
-        link: '/pages/mesa/listar',
+        link: '/pages/candidato/listar',
       }
     ],
   }

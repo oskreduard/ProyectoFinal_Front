@@ -18,59 +18,63 @@ export class CrearComponent implements OnInit {
     url: "",
     metodo: ""
   }
-  constructor(private miServicioPermiso: PermisoService,
-              private rutaActiva: ActivatedRoute,
-              private router: Router) { }
+    constructor(private miServicioPermiso: PermisoService,
+                private rutaActiva: ActivatedRoute,
+               private router: Router) { }
 
-  ngOnInit(): void {
-    if (this.rutaActiva.snapshot.params.id_permiso) {
-      this.modoCreacion = false;
-      this.id_permiso = this.rutaActiva.snapshot.params.id_permiso;
-      this.getPermiso(this.id_permiso)
-    } else {
-      this.modoCreacion = true;
+    ngOnInit(): void {
+      if (this.rutaActiva.snapshot.params.id_permiso) {
+       this.modoCreacion = false;
+       this.id_permiso = this.rutaActiva.snapshot.params.id_permiso;
+       this.getPermiso(this.id_permiso)
+      } else {
+       this.modoCreacion = true;
+      }
     }
-  }
-  getPermiso(id: string) {
-    this.miServicioPermiso.getPermiso(id).
-      subscribe(data => {
-        this.elPermiso = data;
-      });
-  }
-  agregar(): void {
-    if (this.validarDatosCompletos()) {
-      this.intentoEnvio = true;
-      this.miServicioPermiso.crear(this.elPermiso).
+
+    getPermiso(id: string) {
+      this.miServicioPermiso.getPermiso(id).
         subscribe(data => {
-          Swal.fire(
-            'Creado',
-            'El Permiso ha sido creado correctamente',
+          this.elPermiso = data;
+        });
+      }
+  
+      agregar(): void {
+      if (this.validarDatosCompletos()) {
+        this.intentoEnvio = true;
+        this.miServicioPermiso.crear(this.elPermiso).
+         subscribe(data => {
+           Swal.fire(
+             'Creado',
+             'El Permiso ha sido creado correctamente',
+             'success'
+           )
+           this.router.navigate(["pages/permiso/listar"]);
+         });
+        }
+      }
+
+    editar(): void {
+      if (this.validarDatosCompletos()) {
+        this.miServicioPermiso.editar(this.elPermiso,this.elPermiso._id).
+          subscribe(data => {
+            Swal.fire(
+            'Actualizado',
+            'El Permiso ha sido actualizado correctamente',
             'success'
-          )
-          this.router.navigate(["pages/permiso/listar"]);
-        });
+            )
+            this.router.navigate(["pages/permiso/listar"]);
+          });
+      }
     }
-  }
-  editar(): void {
-    if (this.validarDatosCompletos()) {
-      this.miServicioPermiso.editar(this.elPermiso,this.elPermiso._id).
-        subscribe(data => {
-          Swal.fire(
-          'Actualizado',
-          'El Permiso ha sido actualizado correctamente',
-          'success'
-          )
-        this.router.navigate(["pages/permiso/listar"]);
-        });
+
+    validarDatosCompletos():boolean{
+      this.intentoEnvio=true;
+      if(this.elPermiso.url=="" || this.elPermiso.metodo=="" ){
+        return false;
+      }else{
+        return true;
+      }
     }
-  }
-  validarDatosCompletos():boolean{
-    this.intentoEnvio=true;
-    if(this.elPermiso.url=="" || this.elPermiso.metodo=="" ){
-      return false;
-    }else{
-      return true;
-    }
-  }
 }
   

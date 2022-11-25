@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ListComponent } from '../layout/list/list.component';
 import { CrearComponent } from './crear/crear.component';
 import { ListarComponent } from './listar/listar.component';
 
@@ -11,7 +10,11 @@ const routes: Routes = [
   },
   { 
     path:'listar',
-    component:ListComponent
+    component:ListarComponent
+  },
+  {
+    path: 'actualizar/:id_candidato',
+    component: CrearComponent
   }
 ];
 

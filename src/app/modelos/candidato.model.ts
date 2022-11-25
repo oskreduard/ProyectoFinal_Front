@@ -1,3 +1,4 @@
+import { Partido } from "./partido.model";
 
 export class Candidato {
     _id?:string;
@@ -5,5 +6,5 @@ export class Candidato {
     numero_resolucion?:string;
     nombre?:string;
     apellido?:string;
-   // partido?:partido[];
+    partido?:Partido[];
 }
