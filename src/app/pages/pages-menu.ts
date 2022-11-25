@@ -12,27 +12,55 @@ export const MENU_ITEMS: NbMenuItem[] = [
     children: [
       {
         title: 'Crear',
-        link: '/partido/crear',
+        link: '/pages/partidos/crear',
       },
       {
         title: 'Listar Todos',
-        link: '/partido/listar',
+        link: '/pages/partidos/listar',
       },
       {
         title: 'Buscar por Id',
-        link: '/partido/finbyid',
+        link: '/pages/partido/finbyid',
       },
       {
         title: 'Actualizar',
-        link: '/partido/actualizar',
+        link: '/pages/partido/actualizar',
       },
       {
         title: 'Eliminar',
-        link: '/partido/eliminar',
+        link: '/pages/partido/eliminar',
       },
     ],
   },
   {
+    title: 'Mesas',
+    icon: 'edit-2-outline',
+    children: [
+      {
+        title: 'Crear mesa',
+        link: '/pages/mesa/crear',
+      },
+      {
+        title: 'Listar todas las mesas',
+        link: '/pages/mesa/listar',
+      }
+    ],
+  },
+  {
+    title: 'Candidato',
+    icon: 'edit-2-outline',
+    children: [
+      {
+        title: 'Crear Candidato',
+        link: '/pages/mesa/crear',
+      },
+      {
+        title: 'Listar todas los candidatos',
+        link: '/pages/mesa/listar',
+      }
+    ],
+  }
+  /*{
     title: 'Forms',
     icon: 'edit-2-outline',
     children: [
@@ -53,5 +81,5 @@ export const MENU_ITEMS: NbMenuItem[] = [
         link: '/pages/forms/datepicker',
       },
     ],
-  }
+  }*/ 
 ];
