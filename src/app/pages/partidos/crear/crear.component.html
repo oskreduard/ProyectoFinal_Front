@@ -14,7 +14,6 @@
         </div>
         <div class="col-9">
           <input class="form-control" type="text"
-                [disabled]="!modoCreacion"
                 [(ngModel)]="elPartido.nombre">
            <p *ngIf="intentoEnvio && elPartido.nombre==''">Requerido</p>
         </div>

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
-import { Partido } from '../../../modelos/partido.model'; 
-import { PartidoService } from '../../../servicios/partido.service'; 
+import { Permiso } from '../../../modelos/permiso.model'; 
+import { PermisoService } from '../../../servicios/permiso.service';
 
 @Component({
   selector: 'ngx-crear',
@@ -12,61 +12,61 @@ import { PartidoService } from '../../../servicios/partido.service';
 export class CrearComponent implements OnInit {
 
   modoCreacion: boolean = true;
-  id_partido: string = "";
+  id_permiso: string = "";
   intentoEnvio: boolean = false;
-  elPartido: Partido = {
-    nombre: "",
-    lema: ""
+  elPermiso: Permiso = {
+    url: "",
+    metodo: ""
   }
-  constructor(private miServicioPartido: PartidoService,
+  constructor(private miServicioPermiso: PermisoService,
               private rutaActiva: ActivatedRoute,
               private router: Router) { }
 
   ngOnInit(): void {
-    if (this.rutaActiva.snapshot.params.id_partido) {
+    if (this.rutaActiva.snapshot.params.id_permiso) {
       this.modoCreacion = false;
-      this.id_partido = this.rutaActiva.snapshot.params.id_partido;
-      this.getPartido(this.id_partido)
+      this.id_permiso = this.rutaActiva.snapshot.params.id_permiso;
+      this.getPermiso(this.id_permiso)
     } else {
       this.modoCreacion = true;
     }
   }
-  getPartido(id: string) {
-    this.miServicioPartido.getPartido(id).
+  getPermiso(id: string) {
+    this.miServicioPermiso.getPermiso(id).
       subscribe(data => {
-        this.elPartido = data;
+        this.elPermiso = data;
       });
   }
   agregar(): void {
     if (this.validarDatosCompletos()) {
       this.intentoEnvio = true;
-      this.miServicioPartido.crear(this.elPartido).
+      this.miServicioPermiso.crear(this.elPermiso).
         subscribe(data => {
           Swal.fire(
             'Creado',
-            'El Partido ha sido creado correctamente',
+            'El Permiso ha sido creado correctamente',
             'success'
           )
-          this.router.navigate(["pages/partidos/listar"]);
+          this.router.navigate(["pages/permiso/listar"]);
         });
     }
   }
   editar(): void {
     if (this.validarDatosCompletos()) {
-      this.miServicioPartido.editar(this.elPartido,this.elPartido._id).
+      this.miServicioPermiso.editar(this.elPermiso,this.elPermiso._id).
         subscribe(data => {
           Swal.fire(
           'Actualizado',
-          'El Patido ha sido actualizado correctamente',
+          'El Permiso ha sido actualizado correctamente',
           'success'
           )
-        this.router.navigate(["pages/partidos/listar"]);
+        this.router.navigate(["pages/permiso/listar"]);
         });
     }
   }
   validarDatosCompletos():boolean{
     this.intentoEnvio=true;
-    if(this.elPartido.nombre=="" || this.elPartido.lema=="" ){
+    if(this.elPermiso.url=="" || this.elPermiso.metodo=="" ){
       return false;
     }else{
       return true;

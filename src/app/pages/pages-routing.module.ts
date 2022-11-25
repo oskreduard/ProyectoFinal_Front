@@ -39,6 +39,11 @@ const routes: Routes = [{
       .then(m => m.UsuariosModule),
     },
     {
+      path: 'permiso',
+      loadChildren: () => import('./permiso/permiso.module')
+      .then(m => m.PermisoModule),
+    },
+    {
       path: 'layout',
       loadChildren: () => import('./layout/layout.module')
         .then(m => m.LayoutModule),

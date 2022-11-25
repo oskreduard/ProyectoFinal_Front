@@ -10,16 +10,16 @@
       <tr>
         <th *ngFor="let columaActual of nombresColumnas">{{columaActual}}</th>
       </tr>
-      <ng-container *ngFor="let partidoeActual of partidos">
+      <ng-container *ngFor="let partidoActual of partidos">
         <tr>
-          <td>{{partidoeActual.nombre}}</td>
-          <td>{{partidoeActual.lema}} </td>
+          <td>{{partidoActual.nombre}}</td>
+          <td>{{partidoActual.lema}} </td>
 
           <td>
-            <button type="button" class="btn btn-primary" (click)="editar(partidoeActual._id)">
+            <button type="button" class="btn btn-primary" (click)="editar(partidoActual._id)">
               <i class="fas fa-pencil-alt"></i>
             </button>
-            <button type="button" class="btn btn-danger" (click)="eliminar(partidoeActual._id)">
+            <button type="button" class="btn btn-danger" (click)="eliminar(partidoActual._id)">
               <i class="fas fa-solid fa-trash"></i>
             </button>
           </td>
