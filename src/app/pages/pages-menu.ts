@@ -33,20 +33,6 @@ export const MENU_ITEMS: NbMenuItem[] = [
     ],
   },
   {
-    title: 'Permisos',
-    icon: 'edit-2-outline',
-    children: [
-      {
-        title: 'Crear Permiso',
-        link: '/pages/permiso/crear',
-      },
-      {
-        title: 'Listar todas los permisos',
-        link: '/pages/permiso/listar',
-      }
-    ],
-  },
-  {
     title: 'Mesas',
     icon: 'edit-2-outline',
     children: [
@@ -73,43 +59,58 @@ export const MENU_ITEMS: NbMenuItem[] = [
         link: '/pages/candidato/listar',
       }
     ],
-    
   },
   {
-    title: 'resultado',
-    icon: 'edit-2-outline',
+    title: 'Seguidad',
+    group: true,
+  },
+  {
+    title: 'Usuarios',
+    icon: 'lock-outline',
     children: [
       {
-        title: 'Crear resultado',
-        link: '/pages/resultado/crear',
+        title: 'Mostar Todos',
+        link: '/pages/usuarios/listar',
       },
       {
-        title: 'Listar todos los resultado',
-        link: '/pages/resultado/listar',
+        title: 'Crear',
+        link: '/pages/usuarios/crear',
+      },
+      {
+        title: 'Buscar :',
+        children: [
+          {
+            title: 'Perfil',
+            link: '/pages/usuarios/buscar',
+          },
+          {
+            title: 'Asignar',
+            link: '/pages/usuarios/buscar/modoAsignar',
+          },
+          {
+            title: 'Editar',
+            link: '/pages/usuarios/buscar/modoEditar',
+          },
+          {
+            title: 'Eliminar',
+            link: '/pages/usuarios/buscar/modoEliminar',
+          }
+        ]
+      }
+    ]
+  },
+  {
+    title: 'Permisos',
+    icon: 'lock-outline',
+    children: [
+      {
+        title: 'Crear Permiso',
+        link: '/pages/permiso/crear',
+      },
+      {
+        title: 'Listar todas los permisos',
+        link: '/pages/permiso/listar',
       }
     ],
-    
-  }
-  /*{
-    title: 'Forms',
-    icon: 'edit-2-outline',
-    children: [
-      {
-        title: 'Form Inputs',
-        link: '/pages/forms/inputs',
-      },
-      {
-        title: 'Form Layouts',
-        link: '/pages/forms/layouts',
-      },
-      {
-        title: 'Buttons',
-        link: '/pages/forms/buttons',
-      },
-      {
-        title: 'Datepicker',
-        link: '/pages/forms/datepicker',
-      },
-    ],
-  }*/ 
+  },
 ];

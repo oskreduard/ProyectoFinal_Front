@@ -7,13 +7,17 @@ import { CrearComponent } from './crear/crear.component';
 import { NbCardModule } from '@nebular/theme';
 import { FormsModule } from '@angular/forms';
 import { PerfilComponent } from './perfil/perfil.component';
+import { AsignarComponent } from './asignar/asignar.component';
+import { BuscarComponent } from './buscar/buscar.component';
 
 
 @NgModule({
   declarations: [
     ListarComponent,
     CrearComponent,
-    PerfilComponent
+    PerfilComponent,
+    AsignarComponent,
+    BuscarComponent
   ],
   imports: [
     CommonModule,
