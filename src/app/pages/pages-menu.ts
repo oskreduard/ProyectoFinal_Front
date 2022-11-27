@@ -70,6 +70,19 @@ export const MENU_ITEMS: NbMenuItem[] = [
         link: '/pages/mesa/crear',
       }
     ],
+  },{
+    title: 'Resultado',
+    icon: 'edit-2-outline',
+    children: [
+      {
+        title: 'Mostar Todos',
+        link: '/pages/resultado/listar',
+      },
+      {
+        title: 'Crear',
+        link: '/pages/resultado/crear',
+      }
+    ],
   },
   
   {
@@ -139,4 +152,18 @@ export const MENU_ITEMS: NbMenuItem[] = [
       }
     ],
   },
+  {
+    title: 'Permiso-Rol',
+    icon: 'lock-outline',
+    children: [
+      {
+        title: 'Mostar Todos',
+        link: '/pages/permiso-rol/listar',
+      },
+      {
+        title: 'Crear',
+        link: '/pages/permiso-rol/crear',
+      }
+    ],
+  }
 ];
