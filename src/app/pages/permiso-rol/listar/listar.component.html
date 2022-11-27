@@ -1,0 +1,33 @@
+<div class="col-lg-12">
+    <nb-card>
+      <nb-card-header>
+        ADMINISTRACIÓN PERMISOS-ROL
+        <button type="button" class="btn btn-success" (click)="agregar()">
+          <i class="fas fa-plus"></i>
+        </button>
+      </nb-card-header>
+      <table class="table">
+        <tr>
+          <th *ngFor="let columaActual of nombresColumnas">{{columaActual}}</th>
+        </tr>
+        <ng-container *ngFor="let permisoRolActual of permisosRols">
+          <tr>
+            <td *ngIf="permisoRolActual.permiso">{{permisoRolActual.permiso["url"]}} </td>
+            <td *ngIf="!permisoRolActual.permiso"></td>
+            <td *ngIf="permisoRolActual.permiso">{{permisoRolActual.permiso["metodo"]}} </td>
+            <td *ngIf="!permisoRolActual.permiso"></td>
+            <td *ngIf="permisoRolActual.rol">{{permisoRolActual.rol["nombre"]}} </td>
+            <td *ngIf="!permisoRolActual.rol"></td>
+            <td>
+              <button title="Editar" type="button" class="btn btn-primary" (click)="editar(permisoRolActual._id)">
+                <i class="fas fa-pencil-alt"></i>
+              </button>
+              <button title="Eliminar" type="button" class="btn btn-danger" (click)="eliminar(permisoRolActual._id)">
+                <i class="fas fa-solid fa-trash"></i>
+              </button>
+            </td>
+          </tr>
+        </ng-container>
+      </table>
+    </nb-card>
+  </div>    

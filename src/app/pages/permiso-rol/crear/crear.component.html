@@ -1,0 +1,57 @@
+<div class="col-lg-12">
+    <nb-card>
+        <nb-card-header *ngIf="modoCreacion">
+            ASINGAR PERMISO-ROL
+          </nb-card-header>
+          <nb-card-header *ngIf="!modoCreacion">
+            ACTUALIZAR PERMISO-ROL
+          </nb-card-header>
+      <table class="table">
+        <tr>
+            <td WIDTH="15%" vertical-align="justify-content-center"><label>Rol</label></td>
+            <td WIDTH="85%">
+            <div class="row d-flex justify-content-left" >
+                <select  class="btn btn-secondary dropdown-toggle"  (change)="update_rol($event)">
+                    <option value="default">Seleccione el Rol</option>
+                    <option *ngFor="let rolActual of roles" 
+                            name="rolSeleccionado" 
+                            value={{rolActual._id}}>
+                                {{rolActual.nombre}}
+                    </option>
+                </select>
+            </div> 
+            </td>
+        </tr>   
+        <tr>
+            <td vertical-align="justify-content-center"><label>Permiso</label></td>
+            <td >
+            <div class="row d-flex justify-content-left" >
+                <select  class="btn btn-secondary dropdown-toggle"  (change)="update_permiso($event)">
+                    <option value="default">Seleccione la Permiso</option>
+                    <option *ngFor="let permisoActual of permisos" 
+                            name="permisoSeleccionado" 
+                            value={{permisoActual._id}}>
+                         {{permisoActual.metodo}} + {{permisoActual.url}} 
+                    </option>
+                </select>
+            </div> 
+            </td>
+        </tr> 
+        <br>
+        <br>
+        <tr>
+            <td></td>
+            <td >  
+            <div class="row d-flex justify-content-left" >
+                <button *ngIf="modoCreacion" type="button" class="btn btn-primary" (click)="agregar()">
+                <i class="fas fa-pencil-alt">  Guardar</i>
+                </button>
+                <button *ngIf="!modoCreacion" type="button" class="btn btn-primary" (click)="editar()">
+                <i class="fas fa-pencil-alt">  Actualizar</i>
+                </button>
+            </div>  
+             </td>
+        </tr>
+      </table>  
+    </nb-card>
+  </div>  
